@@ -19,6 +19,7 @@ spring:
   ai:
     model:
       chat: deepseek
+      embedding: openai
     deepseek:
       api-key: ${DEEPSEEK_API_KEY:}
       base-url: https://api.deepseek.com
@@ -26,6 +27,19 @@ spring:
         options:
           model: deepseek-chat
           temperature: 0.3
+    # OpenAI 兼容 embedding：指向 SiliconFlow 托管的 BGE-M3（1024 维，中文强）
+    openai:
+      api-key: ${EMBEDDING_API_KEY:sk-placeholder}
+      base-url: ${EMBEDDING_BASE_URL:https://api.siliconflow.cn/v1}
+      embedding:
+        options:
+          model: ${EMBEDDING_MODEL:BAAI/bge-m3}
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 1024
+        initialize-schema: true
 
 management:
   endpoints:
