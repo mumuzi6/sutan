@@ -33,7 +33,7 @@ Spring Boot 3.5 · Java 21 · Spring AI 1.0 · DeepSeek · pgvector · BGE-M3/re
 
 - [x] W1-D1~2 脚手架 + Docker + CI
 - [x] W1-D3~4 语料入库 + embedding
-- [ ] W1-D5~7 RAG + 手写 ReAct + 工具
+- [x] W1-D5~7 RAG + 手写 ReAct + 工具
 - [ ] W2-D1~2 模拟阅卷人 + 批改页
 - [ ] W2-D3~4 用户/统计/admin + Langfuse
 - [ ] W2-D5 部署上线 + 冷启动
