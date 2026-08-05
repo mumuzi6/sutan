@@ -1,0 +1,8 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: sutan-mcp-server
+
+# TODO W2: 引入 MCP server 依赖后，按协议暴露 search_law / search_case / grade_answer 等工具
