@@ -32,7 +32,7 @@ Spring Boot 3.5 · Java 21 · Spring AI 1.0 · DeepSeek · pgvector · BGE-M3/re
 ## 路线图
 
 - [x] W1-D1~2 脚手架 + Docker + CI
-- [ ] W1-D3~4 语料入库 + embedding
+- [x] W1-D3~4 语料入库 + embedding
 - [ ] W1-D5~7 RAG + 手写 ReAct + 工具
 - [ ] W2-D1~2 模拟阅卷人 + 批改页
 - [ ] W2-D3~4 用户/统计/admin + Langfuse
@@ -40,17 +40,22 @@ Spring Boot 3.5 · Java 21 · Spring AI 1.0 · DeepSeek · pgvector · BGE-M3/re
 
 ## 快速开始
 
-> 需本地 JDK 21 + Maven 3.9+。
+> 需本地 JDK 21 + Maven 3.9+。embedding 用 SiliconFlow 免费 BGE-M3（https://siliconflow.cn）。
 
 ```bash
 # 1. 起 PostgreSQL + pgvector
 docker compose up -d postgres
 
-# 2. 配置 DeepSeek 密钥（不配也能启动，仅 AI 调用会失败）
-export DEEPSEEK_API_KEY=sk-xxxx
+# 2. 配置密钥（chat + embedding）
+export DEEPSEEK_API_KEY=sk-xxxx          # DeepSeek
+export EMBEDDING_API_KEY=sk-xxxx         # SiliconFlow
 
 # 3. 构建运行后端
 mvn -pl sutan-backend -am spring-boot:run
+
+# 4. 入库种子法条 → 检索验证
+curl -X POST http://localhost:8080/api/admin/ingest
+curl "http://localhost:8080/api/rag/search?q=善意取得&topK=3"
 
 # 验证
 curl http://localhost:8080/api/health        # 服务+DB 探活
