@@ -31,12 +31,32 @@ Spring Boot 3.5 · Java 21 · Spring AI 1.0 · DeepSeek · pgvector · BGE-M3/re
 
 ## 路线图
 
-- [ ] W1-D1~2 脚手架 + Docker + CI
+- [x] W1-D1~2 脚手架 + Docker + CI
 - [ ] W1-D3~4 语料入库 + embedding
 - [ ] W1-D5~7 RAG + 手写 ReAct + 工具
 - [ ] W2-D1~2 模拟阅卷人 + 批改页
 - [ ] W2-D3~4 用户/统计/admin + Langfuse
 - [ ] W2-D5 部署上线 + 冷启动
+
+## 快速开始
+
+> 需本地 JDK 21 + Maven 3.9+。
+
+```bash
+# 1. 起 PostgreSQL + pgvector
+docker compose up -d postgres
+
+# 2. 配置 DeepSeek 密钥（不配也能启动，仅 AI 调用会失败）
+export DEEPSEEK_API_KEY=sk-xxxx
+
+# 3. 构建运行后端
+mvn -pl sutan-backend -am spring-boot:run
+
+# 验证
+curl http://localhost:8080/api/health        # 服务+DB 探活
+curl http://localhost:8080/api/ai/ping       # DeepSeek 烟雾测试
+open http://localhost:8080/doc.html          # Knife4j 文档
+```
 
 ## License
 
