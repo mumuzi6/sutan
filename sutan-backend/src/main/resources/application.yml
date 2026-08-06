@@ -17,22 +17,27 @@ spring:
     baseline-on-migrate: true
 
   ai:
+    # ===== 统一走 SiliconFlow（chat + embedding 同一 provider、同一 key）=====
+    # chat 和 embedding 都用 OpenAI 兼容协议，只需一个 SiliconFlow API key
     model:
-      chat: deepseek
+      chat: openai
       embedding: openai
-    deepseek:
-      api-key: ${DEEPSEEK_API_KEY:}
-      base-url: https://api.deepseek.com
+    openai:
+      api-key: ${AI_API_KEY:sk-placeholder}
+      base-url: ${LLM_BASE_URL:https://api.siliconflow.cn/v1}
       chat:
         options:
-          model: deepseek-chat
+          # 默认: DeepSeek-V3.2（推理强，适合法考；代金券覆盖）
+          # 试免费: 改 LLM_MODEL=Qwen/Qwen3-8B（完全免费，7B 级）
+          # 试免费: 改 LLM_MODEL=deepseek-ai/DeepSeek-R1-Distill-Qwen-7B（免费推理模型）
+          # 试 Agnes: 需同时改 LLM_BASE_URL=https://apihub.agnes-ai.cn/v1 + LLM_MODEL=agnes-2.5-flash + AI_API_KEY=Agnes的key
+          #          但 embedding 仍需 SiliconFlow→额外配 spring.ai.openai.embedding.base-url/api-key
+          # 试 DeepSeek 官方: 改 LLM_BASE_URL=https://api.deepseek.com + LLM_MODEL=deepseek-chat
+          model: ${LLM_MODEL:deepseek-ai/DeepSeek-V3.2}
           temperature: 0.3
-    # OpenAI 兼容 embedding：指向 SiliconFlow 托管的 BGE-M3（1024 维，中文强）
-    openai:
-      api-key: ${EMBEDDING_API_KEY:sk-placeholder}
-      base-url: ${EMBEDDING_BASE_URL:https://api.siliconflow.cn/v1}
       embedding:
         options:
+          # BGE-M3 完全免费，1024 维，中文强
           model: ${EMBEDDING_MODEL:BAAI/bge-m3}
     vectorstore:
       pgvector:

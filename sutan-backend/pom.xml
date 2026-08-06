@@ -32,13 +32,8 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- Spring AI - DeepSeek (chat) -->
-        <dependency>
-            <groupId>org.springframework.ai</groupId>
-            <artifactId>spring-ai-starter-model-deepseek</artifactId>
-        </dependency>
-
-        <!-- Spring AI - OpenAI 兼容 embedding (SiliconFlow BGE-M3) -->
+        <!-- Spring AI - OpenAI 兼容（chat + embedding 统一走 SiliconFlow） -->
+        <!-- 移除 spring-ai-starter-model-deepseek，chat 和 embedding 都用 OpenAI 兼容协议指向 SiliconFlow -->
         <dependency>
             <groupId>org.springframework.ai</groupId>
             <artifactId>spring-ai-starter-model-openai</artifactId>
