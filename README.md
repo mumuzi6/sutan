@@ -35,7 +35,7 @@ Spring Boot 3.5 · Java 21 · Spring AI 1.0 · DeepSeek · pgvector · BGE-M3/re
 - [x] W1-D3~4 语料入库 + embedding
 - [x] W1-D5~7 RAG + 手写 ReAct + 工具
 - [x] W2-D1~2 模拟阅卷人 + 批改页
-- [ ] W2-D3~4 用户/统计/admin + Langfuse
+- [x] W2-D3~4 用户/统计/admin + Langfuse
 - [ ] W2-D5 部署上线 + 冷启动
 
 ## 快速开始

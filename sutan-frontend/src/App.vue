@@ -27,6 +27,7 @@ const handleSelect = (key: string) => {
       >
         <el-menu-item index="/chat">AI 对话</el-menu-item>
         <el-menu-item index="/grade">主观题批改</el-menu-item>
+        <el-menu-item index="/admin">运营看板</el-menu-item>
       </el-menu>
     </el-header>
     <el-main>
