@@ -112,10 +112,11 @@ public class ReActAgent {
                 1. 涉及法律规定、法条、案例时，必须先调用 search_law 检索，再作答。
                 2. 最终答案中的法律结论必须基于检索到的法条，并在答案中注明出处。
                 3. 用户请求批改主观题时，调用 grade_answer。
-                4. 最多推理 """ + MAX_STEPS + """ 步，得出 Final Answer。
+                4. 最多推理 {MAX_STEPS} 步，得出 Final Answer。
 
                 可用工具：
-                """ + toolRegistry.toolDescriptions();
+                """.replace("{MAX_STEPS}", String.valueOf(MAX_STEPS))
+                + toolRegistry.toolDescriptions();
     }
 
     /** 解析 LLM 输出为 AgentStep */
