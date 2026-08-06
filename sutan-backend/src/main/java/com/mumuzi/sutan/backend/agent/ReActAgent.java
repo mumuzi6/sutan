@@ -5,9 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.deepseek.DeepSeekChatModel;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -37,11 +37,11 @@ public class ReActAgent {
     private static final Pattern INPUT_P = Pattern.compile("Action Input:\\s*(.*?)(?=Thought:|Final Answer:|$)", Pattern.DOTALL);
     private static final Pattern FINAL_P = Pattern.compile("Final Answer:\\s*(.*)", Pattern.DOTALL);
 
-    private final DeepSeekChatModel chatModel;
+    private final ChatModel chatModel;
     private final ToolRegistry toolRegistry;
     private final io.micrometer.observation.ObservationRegistry observationRegistry;
 
-    public ReActAgent(DeepSeekChatModel chatModel, ToolRegistry toolRegistry,
+    public ReActAgent(ChatModel chatModel, ToolRegistry toolRegistry,
                       io.micrometer.observation.ObservationRegistry observationRegistry) {
         this.chatModel = chatModel;
         this.toolRegistry = toolRegistry;

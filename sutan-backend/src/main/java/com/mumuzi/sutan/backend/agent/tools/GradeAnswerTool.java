@@ -3,9 +3,9 @@ package com.mumuzi.sutan.backend.agent.tools;
 import com.mumuzi.sutan.backend.agent.Tool;
 import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.deepseek.DeepSeekChatModel;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -26,9 +26,9 @@ public class GradeAnswerTool implements Tool {
             输出：结论、采分点命中清单、缺失项、法条引用问题、逻辑漏洞、改进建议、预估得分(0-100)。
             """;
 
-    private final DeepSeekChatModel chatModel;
+    private final ChatModel chatModel;
 
-    public GradeAnswerTool(DeepSeekChatModel chatModel) {
+    public GradeAnswerTool(ChatModel chatModel) {
         this.chatModel = chatModel;
     }
 
