@@ -39,14 +39,24 @@ public class ReActAgent {
 
     private final DeepSeekChatModel chatModel;
     private final ToolRegistry toolRegistry;
+    private final io.micrometer.observation.ObservationRegistry observationRegistry;
 
-    public ReActAgent(DeepSeekChatModel chatModel, ToolRegistry toolRegistry) {
+    public ReActAgent(DeepSeekChatModel chatModel, ToolRegistry toolRegistry,
+                      io.micrometer.observation.ObservationRegistry observationRegistry) {
         this.chatModel = chatModel;
         this.toolRegistry = toolRegistry;
+        this.observationRegistry = observationRegistry;
     }
 
     /** 运行 Agent，返回完整结果（含步骤与溯源）。 */
     public AgentResult run(String userQuery) {
+        return io.micrometer.observation.Observation
+                .createNotStarted("react.agent.run", observationRegistry)
+                .contextualName("ReAct: " + (userQuery.length() > 50 ? userQuery.substring(0, 50) : userQuery))
+                .observe(() -> doRun(userQuery));
+    }
+
+    private AgentResult doRun(String userQuery) {
         AgentResult result = new AgentResult();
         String scratchpad = "";
 
