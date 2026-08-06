@@ -40,15 +40,14 @@ Spring Boot 3.5 · Java 21 · Spring AI 1.0 · DeepSeek · pgvector · BGE-M3/re
 
 ## 快速开始
 
-> 需本地 JDK 21 + Maven 3.9+。embedding 用 SiliconFlow 免费 BGE-M3（https://siliconflow.cn）。
+> 需本地 JDK 21 + Maven 3.9+。chat + embedding 统一走 SiliconFlow（https://siliconflow.cn），一个 key 搞定。
 
 ```bash
 # 1. 起 PostgreSQL + pgvector
 docker compose up -d postgres
 
-# 2. 配置密钥（chat + embedding）
-export DEEPSEEK_API_KEY=sk-xxxx          # DeepSeek
-export EMBEDDING_API_KEY=sk-xxxx         # SiliconFlow
+# 2. 配置密钥（SiliconFlow 一个 key 搞定 chat + embedding）
+export AI_API_KEY=sk-xxxx                # SiliconFlow API key
 
 # 3. 构建运行后端
 mvn -pl sutan-backend -am spring-boot:run
