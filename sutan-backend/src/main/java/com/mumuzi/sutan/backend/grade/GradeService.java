@@ -7,9 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.deepseek.DeepSeekChatModel;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -47,12 +47,12 @@ public class GradeService {
             以下为相关法条供参考（考生引用应与之一致）：
             """;
 
-    private final DeepSeekChatModel chatModel;
+    private final ChatModel chatModel;
     private final RetrievalService retrievalService;
     private final JdbcTemplate jdbc;
     private final ObjectMapper objectMapper;
 
-    public GradeService(DeepSeekChatModel chatModel, RetrievalService retrievalService,
+    public GradeService(ChatModel chatModel, RetrievalService retrievalService,
                         JdbcTemplate jdbc, ObjectMapper objectMapper) {
         this.chatModel = chatModel;
         this.retrievalService = retrievalService;
